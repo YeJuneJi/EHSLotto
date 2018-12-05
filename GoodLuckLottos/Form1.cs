@@ -28,6 +28,7 @@ namespace GoodLuckLottos
         public Form1()
         {
             InitializeComponent();
+            this.Text = "행운의 로또";
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -79,9 +80,8 @@ namespace GoodLuckLottos
                 HtmlAgilityPack.HtmlDocument htmlDoc = htmlWeb.Load(html);
                 HtmlNode body = htmlDoc.DocumentNode.SelectSingleNode("//body");
                 //1회~835회까지 읽어온다
-                //만약 다음회차가 없으면 회차가 없음을 출력.
+                //만약 다음회차가 없으면 가장 최근의 회차임을 출력.
                 //있으면 다음회차 읽어와 DB에 저장
-                //1회차만 읽어와 클래스에 저장. 
                 foreach (var item in body.SelectNodes("//div"))
                 {
                     //if (item.GetAttributeValue("class", "Not Found") == "page-error")
@@ -94,6 +94,7 @@ namespace GoodLuckLottos
                         if (string.IsNullOrEmpty(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText))
                         {
                             check = true;
+                            
                         }
                         else
                         {
@@ -134,8 +135,17 @@ namespace GoodLuckLottos
                 }
                 winningDateNumber++;
             }
+            if (check)
+            {
+                MessageBox.Show("가장 최근 회차입니다!");
+            }
+            else
+            {
+                MessageBox.Show("저장 완료");
+            }
+            
             connection.Close();
-
+            
         }
 
         //DB의 저장프로시저의 빈번한 사용을 대비한 저장프로시저 Command 메서드.
@@ -179,6 +189,14 @@ namespace GoodLuckLottos
         {
             DisplayAll();
             lottoGridView.DataSource = lottoList;
+            lottoGridView.Columns[0].HeaderText = "회차";
+            lottoGridView.Columns[1].HeaderText = "1번 공";
+            lottoGridView.Columns[2].HeaderText = "2번 공";
+            lottoGridView.Columns[3].HeaderText = "3번 공";
+            lottoGridView.Columns[4].HeaderText = "4번 공";
+            lottoGridView.Columns[5].HeaderText = "5번 공";
+            lottoGridView.Columns[6].HeaderText = "6번 공";
+            lottoGridView.Columns[7].HeaderText = "보너스 공";
         }
         #endregion
 
