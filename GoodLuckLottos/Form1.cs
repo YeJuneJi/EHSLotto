@@ -41,6 +41,7 @@ namespace GoodLuckLottos
             btnMenu6.BringToFront();
             btnStatistics.BringToFront();
             btnColorStatistics.BringToFront();
+            watchTimer.Enabled = true;
         }
         //SqlDbConnection 클래스에서 싱글톤 객체를 받아와 DB를 Open 하는 메서드
         private void ConnectDb()
@@ -84,17 +85,11 @@ namespace GoodLuckLottos
                 //있으면 다음회차 읽어와 DB에 저장
                 foreach (var item in body.SelectNodes("//div"))
                 {
-                    //if (item.GetAttributeValue("class", "Not Found") == "page-error")
-                    //{
-                    //    check = true;
-                    //    break;
-                    //}
                     if (item.GetAttributeValue("class", "Not Found") == "win_result")
                     {
                         if (string.IsNullOrEmpty(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText))
                         {
                             check = true;
-                            
                         }
                         else
                         {
@@ -112,7 +107,7 @@ namespace GoodLuckLottos
                             };
                             SqlCommand command = ConnectProcedure();
                             command.CommandText = "InsertbyLottoNo";
-
+                            command.Parameters.AddWithValue("winDateNo", lotto.WinningDateNo);
                             command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
                             command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
                             command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
@@ -145,7 +140,7 @@ namespace GoodLuckLottos
             }
             
             connection.Close();
-            
+            DisplayAll();
         }
 
         //DB의 저장프로시저의 빈번한 사용을 대비한 저장프로시저 Command 메서드.
@@ -179,15 +174,8 @@ namespace GoodLuckLottos
             }
             sdr.Close();
             connection.Close();
-
             //리스트를 내림차순으로 정렬.(가장 최근의 값부터 출력된다.)
             lottoList.Reverse();
-        }
-
-        //전체 출력하는 메서드.
-        private void btnSelectAll_Click(object sender, EventArgs e)
-        {
-            DisplayAll();
             lottoGridView.DataSource = lottoList;
             lottoGridView.Columns[0].HeaderText = "회차";
             lottoGridView.Columns[1].HeaderText = "1번 공";
@@ -198,6 +186,7 @@ namespace GoodLuckLottos
             lottoGridView.Columns[6].HeaderText = "6번 공";
             lottoGridView.Columns[7].HeaderText = "보너스 공";
         }
+
         #endregion
 
         //색상별 통계 차트버튼클릭이벤트 - 예준
@@ -234,6 +223,7 @@ namespace GoodLuckLottos
         }
         private void FormColorStatistics_Load(object sender, EventArgs e)
         {
+            formColorStatistics.Text = "색상통계";
             caseCount = new int[5];
             rangeArr = new string[5];
             formColorStatistics.chartPie.Series[0].Name = "LottoChartPie";
@@ -434,6 +424,11 @@ namespace GoodLuckLottos
                 xmlTextWriter.Flush();
                 xmlTextWriter.Close();
             }
+        }
+
+        private void watchTimer_Tick(object sender, EventArgs e)
+        {
+            this.nowTimeStatStrip.Text = "현재시간 : " + DateTime.Now.ToLongTimeString();
         }
     }
 }

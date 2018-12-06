@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSave = new System.Windows.Forms.Button();
             this.lottoGridView = new System.Windows.Forms.DataGridView();
-            this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnColorStatistics = new System.Windows.Forms.Button();
             this.btnMenu4 = new System.Windows.Forms.Button();
             this.btnMenu6 = new System.Windows.Forms.Button();
@@ -42,8 +42,13 @@
             this.btnMenu8 = new System.Windows.Forms.Button();
             this.btnXml = new System.Windows.Forms.Button();
             this.lottoSaveDlg = new System.Windows.Forms.SaveFileDialog();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.nowTimeStatStrip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.watchTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
@@ -64,16 +69,6 @@
             this.lottoGridView.RowTemplate.Height = 23;
             this.lottoGridView.Size = new System.Drawing.Size(726, 440);
             this.lottoGridView.TabIndex = 12;
-            // 
-            // btnSelectAll
-            // 
-            this.btnSelectAll.Location = new System.Drawing.Point(181, 491);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(78, 23);
-            this.btnSelectAll.TabIndex = 13;
-            this.btnSelectAll.Text = "출력";
-            this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // btnColorStatistics
             // 
@@ -167,7 +162,7 @@
             // 
             // btnXml
             // 
-            this.btnXml.Location = new System.Drawing.Point(291, 491);
+            this.btnXml.Location = new System.Drawing.Point(131, 491);
             this.btnXml.Name = "btnXml";
             this.btnXml.Size = new System.Drawing.Size(123, 23);
             this.btnXml.TabIndex = 20;
@@ -179,11 +174,38 @@
             // 
             this.lottoSaveDlg.Filter = "xml 파일|*.xml";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.nowTimeStatStrip});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 633);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1500, 22);
+            this.statusStrip1.TabIndex = 21;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(132, 17);
+            this.toolStripStatusLabel1.Text = "제작자 : 지웅,원석,예준";
+            // 
+            // nowTimeStatStrip
+            // 
+            this.nowTimeStatStrip.Name = "nowTimeStatStrip";
+            this.nowTimeStatStrip.Size = new System.Drawing.Size(0, 17);
+            // 
+            // watchTimer
+            // 
+            this.watchTimer.Tick += new System.EventHandler(this.watchTimer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1500, 655);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnMenu8);
             this.Controls.Add(this.btnXml);
             this.Controls.Add(this.btnStatistics);
@@ -193,22 +215,24 @@
             this.Controls.Add(this.btnMenu6);
             this.Controls.Add(this.btnMenu4);
             this.Controls.Add(this.btnColorStatistics);
-            this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.lottoGridView);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView lottoGridView;
-        private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.Button btnColorStatistics;
         private System.Windows.Forms.Button btnMenu4;
         private System.Windows.Forms.Button btnMenu6;
@@ -226,7 +250,10 @@
         private System.Windows.Forms.Button btnMenu8;
 
         private System.Windows.Forms.Button btnXml;
-
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel nowTimeStatStrip;
+        private System.Windows.Forms.Timer watchTimer;
     }
 }
 
