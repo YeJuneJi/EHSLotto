@@ -46,6 +46,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.nowTimeStatStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.watchTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnInit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -162,7 +163,7 @@
             // 
             // btnXml
             // 
-            this.btnXml.Location = new System.Drawing.Point(131, 491);
+            this.btnXml.Location = new System.Drawing.Point(128, 491);
             this.btnXml.Name = "btnXml";
             this.btnXml.Size = new System.Drawing.Size(123, 23);
             this.btnXml.TabIndex = 20;
@@ -200,11 +201,22 @@
             // 
             this.watchTimer.Tick += new System.EventHandler(this.watchTimer_Tick);
             // 
+            // btnInit
+            // 
+            this.btnInit.Location = new System.Drawing.Point(276, 491);
+            this.btnInit.Name = "btnInit";
+            this.btnInit.Size = new System.Drawing.Size(75, 23);
+            this.btnInit.TabIndex = 22;
+            this.btnInit.Text = "초기화";
+            this.btnInit.UseVisualStyleBackColor = true;
+            this.btnInit.Click += new System.EventHandler(this.btnInit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1500, 655);
+            this.Controls.Add(this.btnInit);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnMenu8);
             this.Controls.Add(this.btnXml);
@@ -254,6 +266,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel nowTimeStatStrip;
         private System.Windows.Forms.Timer watchTimer;
+        private System.Windows.Forms.Button btnInit;
     }
 }
 

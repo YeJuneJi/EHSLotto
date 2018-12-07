@@ -32,7 +32,8 @@ namespace GoodLuckLottos
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            DisplayAll();
+            btnSave_Click(null, null);
+            //DisplayAll();
             BringToFront();
             btnMenu7.BringToFront();
             btnOddeorEven.BringToFront();
@@ -429,6 +430,23 @@ namespace GoodLuckLottos
         private void watchTimer_Tick(object sender, EventArgs e)
         {
             this.nowTimeStatStrip.Text = "현재시간 : " + DateTime.Now.ToLongTimeString();
+        }
+
+        private void btnInit_Click(object sender, EventArgs e)
+        {
+            ConnectDb();
+            SqlCommand comm = ConnectProcedure();
+            comm.CommandText = "TruncLottos";
+            int result = comm.ExecuteNonQuery();
+            if (result == 1)
+            {
+                MessageBox.Show("초기화 완료");
+            }
+            else
+            {
+                MessageBox.Show("초기화 실패");
+            }
+            connection.Close();
         }
     }
 }
