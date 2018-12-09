@@ -25,6 +25,7 @@ namespace GoodLuckLottos
         List<Lotto> lottoList = new List<Lotto>();
         XmlTextWriter xmlTextWriter;
         private int winningDateNumber = 1;
+        bool check = false;
         public Form1()
         {
             InitializeComponent();
@@ -56,7 +57,7 @@ namespace GoodLuckLottos
         private void btnSave_Click(object sender, EventArgs e)
         {
             ConnectDb();
-            bool check = false;
+            
             SqlCommand comm = ConnectProcedure();
             comm.CommandText = "selectRecentDate";
             try
@@ -75,6 +76,7 @@ namespace GoodLuckLottos
                 MessageBox.Show("다시DB를 연결 해 주세요!\n" + ex.Message);
             }
             sdr.Close();
+            check = false;
             while (!check)
             {
                 string html = "https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + winningDateNumber;
@@ -90,7 +92,9 @@ namespace GoodLuckLottos
                     {
                         if (string.IsNullOrEmpty(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText))
                         {
+                            MessageBox.Show("가장 최근 회차입니다!");
                             check = true;
+                            winningDateNumber = 0;
                         }
                         else
                         {
@@ -131,15 +135,6 @@ namespace GoodLuckLottos
                 }
                 winningDateNumber++;
             }
-            if (check)
-            {
-                MessageBox.Show("가장 최근 회차입니다!");
-            }
-            else
-            {
-                MessageBox.Show("저장 완료");
-            }
-            
             connection.Close();
             DisplayAll();
         }
@@ -440,12 +435,13 @@ namespace GoodLuckLottos
                 ConnectDb();
                 SqlCommand comm = ConnectProcedure();
                 comm.CommandText = "TruncLottos";
-                int result = comm.ExecuteNonQuery();
-                if (result > 0)
+                int result = 0;
+                try
                 {
-                    MessageBox.Show("초기화 완료");
+                    result = comm.ExecuteNonQuery();
+                    MessageBox.Show("초기화 완료 !");
                 }
-                else
+                catch (Exception)
                 {
                     MessageBox.Show("초기화 실패");
                 }
