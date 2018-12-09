@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartBar = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cbxPerid = new System.Windows.Forms.ComboBox();
-            this.btnPeriod = new System.Windows.Forms.Button();
             this.rdoDivBy10 = new System.Windows.Forms.RadioButton();
             this.rdoDivBy5 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.chartBar)).BeginInit();
@@ -41,17 +40,17 @@
             // 
             // chartBar
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chartBar.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chartBar.Legends.Add(legend9);
+            chartArea2.Name = "ChartArea1";
+            this.chartBar.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartBar.Legends.Add(legend2);
             this.chartBar.Location = new System.Drawing.Point(12, 67);
             this.chartBar.Name = "chartBar";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chartBar.Series.Add(series9);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartBar.Series.Add(series2);
             this.chartBar.Size = new System.Drawing.Size(702, 416);
             this.chartBar.TabIndex = 0;
             this.chartBar.Text = "chart1";
@@ -63,16 +62,7 @@
             this.cbxPerid.Name = "cbxPerid";
             this.cbxPerid.Size = new System.Drawing.Size(121, 20);
             this.cbxPerid.TabIndex = 1;
-            // 
-            // btnPeriod
-            // 
-            this.btnPeriod.Location = new System.Drawing.Point(152, 489);
-            this.btnPeriod.Name = "btnPeriod";
-            this.btnPeriod.Size = new System.Drawing.Size(75, 23);
-            this.btnPeriod.TabIndex = 2;
-            this.btnPeriod.Text = "조회";
-            this.btnPeriod.UseVisualStyleBackColor = true;
-            this.btnPeriod.Click += new System.EventHandler(this.btnPeriod_Click);
+            this.cbxPerid.SelectedIndexChanged += new System.EventHandler(this.btnPeriod_Click);
             // 
             // rdoDivBy10
             // 
@@ -85,6 +75,7 @@
             this.rdoDivBy10.TabStop = true;
             this.rdoDivBy10.Text = "10번대";
             this.rdoDivBy10.UseVisualStyleBackColor = true;
+            this.rdoDivBy10.CheckedChanged += new System.EventHandler(this.btnPeriod_Click);
             // 
             // rdoDivBy5
             // 
@@ -95,6 +86,7 @@
             this.rdoDivBy5.TabIndex = 4;
             this.rdoDivBy5.Text = "5번대";
             this.rdoDivBy5.UseVisualStyleBackColor = true;
+            this.rdoDivBy5.CheckedChanged += new System.EventHandler(this.btnPeriod_Click);
             // 
             // FormOccurrencesPerSection
             // 
@@ -103,7 +95,6 @@
             this.ClientSize = new System.Drawing.Size(744, 535);
             this.Controls.Add(this.rdoDivBy5);
             this.Controls.Add(this.rdoDivBy10);
-            this.Controls.Add(this.btnPeriod);
             this.Controls.Add(this.cbxPerid);
             this.Controls.Add(this.chartBar);
             this.Name = "FormOccurrencesPerSection";
@@ -119,7 +110,6 @@
 
         internal System.Windows.Forms.DataVisualization.Charting.Chart chartBar;
         private System.Windows.Forms.ComboBox cbxPerid;
-        private System.Windows.Forms.Button btnPeriod;
         private System.Windows.Forms.RadioButton rdoDivBy10;
         private System.Windows.Forms.RadioButton rdoDivBy5;
     }
