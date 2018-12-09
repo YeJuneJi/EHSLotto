@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartBar = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cbxPerid = new System.Windows.Forms.ComboBox();
             this.btnPeriod = new System.Windows.Forms.Button();
@@ -41,17 +41,17 @@
             // 
             // chartBar
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartBar.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartBar.Legends.Add(legend1);
+            chartArea9.Name = "ChartArea1";
+            this.chartBar.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chartBar.Legends.Add(legend9);
             this.chartBar.Location = new System.Drawing.Point(12, 67);
             this.chartBar.Name = "chartBar";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartBar.Series.Add(series1);
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chartBar.Series.Add(series9);
             this.chartBar.Size = new System.Drawing.Size(702, 416);
             this.chartBar.TabIndex = 0;
             this.chartBar.Text = "chart1";

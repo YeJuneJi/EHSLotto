@@ -33,6 +33,7 @@ namespace GoodLuckLottos
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            lottoGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             btnSave_Click(null, null);
             //DisplayAll();
             BringToFront();
