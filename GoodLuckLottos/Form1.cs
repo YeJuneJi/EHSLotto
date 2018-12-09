@@ -434,19 +434,23 @@ namespace GoodLuckLottos
 
         private void btnInit_Click(object sender, EventArgs e)
         {
-            ConnectDb();
-            SqlCommand comm = ConnectProcedure();
-            comm.CommandText = "TruncLottos";
-            int result = comm.ExecuteNonQuery();
-            if (result == 1)
+            var msg = MessageBox.Show("정말 초기화 하시겠습니까?", "초기화", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (msg == DialogResult.Yes)
             {
-                MessageBox.Show("초기화 완료");
+                ConnectDb();
+                SqlCommand comm = ConnectProcedure();
+                comm.CommandText = "TruncLottos";
+                int result = comm.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    MessageBox.Show("초기화 완료");
+                }
+                else
+                {
+                    MessageBox.Show("초기화 실패");
+                }
+                connection.Close();
             }
-            else
-            {
-                MessageBox.Show("초기화 실패");
-            }
-            connection.Close();
         }
     }
 }

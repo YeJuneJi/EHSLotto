@@ -27,7 +27,7 @@ namespace GoodLuckLottos
         private SqlDbConnection()
         {
             string connectionString;
-            connectionString = ConfigurationManager.ConnectionStrings["LottoDbConnection"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["LottoDbConnection2"].ConnectionString;
             connect = new SqlConnection(connectionString);
         }
 
